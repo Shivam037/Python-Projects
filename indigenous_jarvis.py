@@ -6,6 +6,7 @@ import time
 import webbrowser as wb
 import wikipedia
 from googlesearch import *
+import pywhatkit as kit
 #Setting up mic 
 mic = sr.Recognizer()
 
@@ -55,19 +56,11 @@ def jarvis():
         elif "wait" in command:
             speaker.say("ok sir")
         elif "who" in command:
-            wiki = wikipedia.summary(command,10)
-            print(wiki)
-            speaker.say(wiki)
+            kit.search(command)
+            speaker.say("searching"+command)
         elif "what" in command:
-            wiki = wikipedia.summary(command,10)
-            print(wiki)
-            speaker.say(wiki)
-        elif "search" in command:
-            speaker.say("searching" + command)
-            for j in search(command, tld="com", num=1, stop=1):
-                result = j
-            firefox = wb.Mozilla("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe")
-            firefox.open_new_tab(result)
+            kit.search(command)
+            speaker.say("searching"+command)
         else:   
             speaker.say("i am not able to interpret your command maybe able  in near future")
             
